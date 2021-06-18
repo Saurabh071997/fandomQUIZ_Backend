@@ -31,7 +31,7 @@ router.param('categoryId', async (req, res, next, categoryId) =>{
     const category = await Category.findById(categoryId)
   
     if(!category){
-      return res.status(400).json({success:false, message: `No Category with id ${categoryId} exists`})
+      return res.status(400).json({success:false, errorMessage: `No Category with id ${categoryId} exists`})
     }
 
     req.category = category

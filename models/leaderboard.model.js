@@ -1,20 +1,24 @@
 const mongoose = require('mongoose')
 const {Schema} = mongoose
+
+const {User} = require('./user.model.js')
 const {Category} = require('./category.model.js')
 
 const LeaderboardSchema = new Schema({
-  username: {
+  
+  useravatar: {
     type: String
   },
 
-  quizplayed: {
-    type: Schema.Types.ObjectId,
-    ref: 'Category'
+  __quizId: {
+      type: Schema.Types.ObjectId,
+      ref:'Category'
   },
 
   score: {
-    type: Number
+    type:Number
   }
+
 },
 {
   timestamps: true

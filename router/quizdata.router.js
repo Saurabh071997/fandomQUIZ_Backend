@@ -1,31 +1,12 @@
+require('dotenv').config()
 const express = require('express')
 const {extend} = require('lodash')
 const {QuizData} = require('../models/quizdata.model.js')
+const {authenticateToken} = require('../utils/authenticateToken.js')
 
 const router = express.Router()
 
-
-// router.route('/')
-// .get(async(req, res)=>{
-//   try{
-//     const quizdata = await QuizData.find({})
-//     res.status(200).json({success:true, data: quizdata})
-//   }catch(err){
-//     res.status(500).json({success:false, message:'Failed to access data! Check error message for details', errorMessage: err.message})
-//   }
-// })
-// .post(async (req, res)=>{
-//   try{
-//     const quizDataObj = req.body
-//     quizDataObj = new QuizData(quizDataObj)
-//     const savedObj = await quizDataObj.save()
-//     res.status(201).json({success:true, data: savedObj})
-
-//   }catch(err){
-//     res.status(500).json({success:false, message:'Failed to save data! Check error message for details', errorMessage: err.message})
-//   }
-// })
-
+router.use(authenticateToken)
 
 router.param('categoryId', async(req, res, next, categoryId)=>{
   try{
